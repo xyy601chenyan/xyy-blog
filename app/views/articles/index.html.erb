@@ -1,6 +1,7 @@
 <div class="col-md-12">
   <div class="article">
-    <%= link_to("New Article",new_article_path) %>
+    <br>
+    <%= link_to("New Article",new_article_path,class: "btn btn-sm btn-default pull-right") %>
 
   </div>
 
@@ -16,6 +17,7 @@
       <tr>
         <td><%= link_to(article.title,article_path(article)) %></td>
         <td><%= article.description %></td>
+        <td><%= link_to("删除",article_path(article),class: "btn btn-sm btn-default",method: :delete, data: {confirm: "确定要删除该文章？"}) %></td>
       </tr>
       <% end %>
     </tbody>
