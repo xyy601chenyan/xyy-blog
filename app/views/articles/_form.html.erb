@@ -1,0 +1,8 @@
+<hr>
+<%= simple_form_for @article do |f| %>
+<div class="form-article">
+  <%= f.input :title, label: "标题"%>
+  <%= f.input :description, label: "正文" %>
+</div>
+<%= f.submit "确定", class: "btn btn-primary", data: {disable_with: "提交中..."} %>
+<% end %>
