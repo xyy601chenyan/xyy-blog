@@ -1,5 +1,6 @@
 <div class="col-md-12">
   <div class="article">
+    <%= link_to("编辑",edit_admin_article_path(@article),class: "btn btn-primary pull-right") %>
   </div>
   <h2><%= @article.title %></h2>
   <p><%= @article.description %></p>
