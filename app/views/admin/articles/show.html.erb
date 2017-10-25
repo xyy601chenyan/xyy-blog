@@ -3,5 +3,5 @@
     <%= link_to("编辑",edit_admin_article_path(@article),class: "btn btn-primary pull-right") %>
   </div>
   <h2><%= @article.title %></h2>
-  <p><%= @article.description %></p>
+  <p><%= markdown(@article.description) %></p>
 </div>

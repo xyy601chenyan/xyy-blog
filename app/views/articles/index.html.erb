@@ -15,7 +15,7 @@
       <% @articles.each do |article| %>
       <tr>
         <td><%= link_to(article.title,article_path(article)) %></td>
-        <td><%= article.description %></td>
+        <td><%= markdown(article.description) %></td>
       </tr>
       <% end %>
     </tbody>
