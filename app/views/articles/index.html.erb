@@ -7,8 +7,9 @@
   <table class="table">
     <thead>
       <tr>
-        <td>Title</td>
-        <td>Description</td>
+        <td>标题</td>
+        <td>正文</td>
+        <td>发布时间</td>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= link_to(article.title,article_path(article)) %></td>
         <td><%= markdown(article.description) %></td>
+        <td><%= article.created_at.strftime("%Y/%m/%d") %></td>
       </tr>
       <% end %>
     </tbody>
