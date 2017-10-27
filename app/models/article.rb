@@ -24,4 +24,10 @@ class Article < ApplicationRecord
     self.status = "private"
     self.save
   end
+
+#为网址加上文字,增加网站的安全性
+  def to_param
+    "#{self.id}-#{self.title}"
+  end
+
 end
