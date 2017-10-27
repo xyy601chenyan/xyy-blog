@@ -3,6 +3,14 @@
 <div class="form-article">
   <%= f.input :title, label: "标题"%>
   <%= f.input :description, label: "正文" %>
+  <% Article::STATUS.each do |status| %>
+  <label>
+    <%= f.radio_button :status, status %>
+    <%= t(status, :scope => "article.status") %>
+
+  </label>
+  <% end %>
 </div>
+<br>
 <%= f.submit "确定", class: "btn btn-primary", data: {disable_with: "提交中..."} %>
 <% end %>

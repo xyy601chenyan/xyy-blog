@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   before_action :validate_search_key, only:[:search]
 
    def index
-     @articles = Article.order("created_at DESC").paginate(:page => params[:page], :per_page => 2)
+     @articles = Article.where(:status => "public").order("created_at DESC")
+     @articles = @articles.paginate(:page => params[:page], :per_page => 2)
    end
 
    def show
@@ -12,7 +13,7 @@ class ArticlesController < ApplicationController
 
    def search
      if @query_string.present?
-       search_result = Article.ransack(@search_criteria).result(:distinct => true)
+       search_result = Article.where(:status => "public").ransack(@search_criteria).result(:distinct => true)
        @articles = search_result.paginate(:page => params[:page], :per_page => 6)
      end
    end
