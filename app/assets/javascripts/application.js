@@ -15,4 +15,3 @@
 //= require turbolinks
 //= require bootstrap
 //= require simplemde.min
-//= require local_time
