@@ -23,6 +23,8 @@
     </tbody>
   </table>
   <div class="text-center">
+    <div class="pagination">
     <%= will_paginate @articles, renderer: BootstrapPagination::Rails, :previous_label => t('上一页'), :next_label => t('下一页') %>
+    </div>
   </div>
 </div>

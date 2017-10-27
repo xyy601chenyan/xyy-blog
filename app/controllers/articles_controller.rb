@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
    def search
      if @query_string.present?
        search_result = Article.ransack(@search_criteria).result(:distinct => true)
-       @articles = search_result.paginate(:page => params[:page], :per_page => 10)
+       @articles = search_result.paginate(:page => params[:page], :per_page => 6)
      end
    end
 
