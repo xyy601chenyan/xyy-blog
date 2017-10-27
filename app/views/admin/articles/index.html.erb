@@ -16,9 +16,39 @@
     <tbody>
       <% @articles.each do |article| %>
       <tr>
-        <td><%= link_to(article.title,edit_admin_article_path(article)) %></td>
-        <td><%= t(article.status, :scope => "article.status") %></td>
-        <td><%= link_to("删除",admin_article_path(article),class: "btn btn-sm btn-default",method: :delete, data: {confirm: "确定要删除该文章？"}) %></td>
+        <td><%=render_article_status(article) %> <%= link_to(article.title,edit_admin_article_path(article)) %></td>
+        <td><%= link_to("预览",admin_article_path(article),class: "btn btn-sm btn-default") %><%= t(article.status, :scope => "article.status") %></td>
+        <td>
+          <ul class="option" style="list-style:none;">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">选项
+              <b class="caret"></b>
+
+            </a>
+            <ul class="dropdown-menu">
+              <% case article.status %>
+              <% when "draft" %>
+                <%= link_to("发布",publish_admin_article_path(article),method: :post) %>
+                <br>
+               <%= link_to("设为私有",exclusive_admin_article_path(article),method: :post) %>
+
+              <% when "public"%>
+                <%= link_to("设为草稿",sketch_admin_article_path(article),method: :post) %>
+                <br>
+                <%= link_to("设为私有",exclusive_admin_article_path(article),method: :post) %>
+
+              <% when "private" %>
+
+                <%= link_to("设为草稿",sketch_admin_article_path(article),method: :post) %>
+                <br>
+                <%= link_to("发布",publish_admin_article_path(article),method: :post) %>
+              <% end %>
+
+              <li>
+                <%= link_to("删除",admin_article_path(article),method: :delete, data: {confirm: "确定要删除该文章？"}) %></td>
+              </li>
+            </ul>
+            </ul>
       </tr>
       <% end %>
     </tbody>

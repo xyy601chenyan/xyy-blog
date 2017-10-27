@@ -3,6 +3,26 @@ class Admin::ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
   before_action :require_is_admin
 
+  #定义将文章设定为"公开"的方法
+  def publish
+    @article = Article.find(params[:id])
+    @article.publish!
+    redirect_to :back
+  end
+
+  #定义将文章设定为"草稿"的方法
+  def sketch
+    @article = Article.find(params[:id])
+    @article.sketch!
+    redirect_to :back
+  end
+
+  #定义将文章设定为"私有"的方法
+  def exclusive
+    @article = Article.find(params[:id])
+    @article.exclusive!
+    redirect_to :back
+  end
 
   def index
     @articles = Article.all

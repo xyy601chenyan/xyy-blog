@@ -8,6 +8,11 @@ class ArticlesController < ApplicationController
 
    def show
     @article = Article.find(params[:id])
+
+    if @article.status != "public"
+      flash[:warning] = "该篇文章已归档"
+      redirect_to root_path
+    end
    end
 
 

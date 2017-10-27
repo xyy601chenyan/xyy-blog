@@ -4,12 +4,18 @@ Rails.application.routes.draw do
 
   resources :articles do
     collection do
-      get :search 
+      get :search
     end
   end
 
   namespace :admin do
-    resources :articles
+    resources :articles do
+      member do
+        post :publish
+        post :sketch
+        post :exclusive
+      end
+    end
   end
 
 end

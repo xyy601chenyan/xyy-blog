@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="col-md-3">
+  <div class="search-bar">
     <%= form_tag search_articles_path, method: :get, class: "articles-search-form" do %>
     <div class="input-group">
       <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="搜索文章">
@@ -11,4 +10,3 @@
     </div>
     <% end %>
   </div>
-</div>
