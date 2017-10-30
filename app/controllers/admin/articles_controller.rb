@@ -24,8 +24,15 @@ class Admin::ArticlesController < ApplicationController
     redirect_to :back
   end
 
+  #定义将文章在后台置顶的方法
+  def  move_to_top
+    @article = Article.find(params[:id])
+    @article.move_to_top
+    redirect_to :back
+  end
+
   def index
-    @articles = Article.all
+    @articles = Article.order("position ASC").paginate(:page => params[:page],:per_page =>10)
   end
 
   def new

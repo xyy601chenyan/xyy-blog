@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         post :publish
         post :sketch
         post :exclusive
+        post :move_to_top
       end
     end
   end

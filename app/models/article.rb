@@ -6,6 +6,8 @@ class Article < ApplicationRecord
   STATUS = ["draft","public","private"]
   validates_inclusion_of :status, :in => STATUS
 
+  acts_as_list
+
 
 #定义方法，将文章的类型修改为"public"(公开)
   def publish!

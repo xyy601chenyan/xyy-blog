@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
    def index
      @articles = Article.where(:status => "public").order("created_at DESC")
-     @articles = @articles.paginate(:page => params[:page], :per_page => 2)
+     @articles = @articles.paginate(:page => params[:page], :per_page => 10)
    end
 
    def show

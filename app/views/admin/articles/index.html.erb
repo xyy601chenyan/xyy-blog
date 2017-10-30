@@ -17,7 +17,7 @@
       <% @articles.each do |article| %>
       <tr>
         <td><%=render_article_status(article) %> <%= link_to(article.title,edit_admin_article_path(article)) %></td>
-        <td><%= link_to("预览",admin_article_path(article),class: "btn btn-sm btn-default") %><%= t(article.status, :scope => "article.status") %></td>
+        <td><%= link_to("预览",admin_article_path(article),class: "btn btn-sm btn-default",target:"_blank") %><%= t(article.status, :scope => "article.status") %></td>
         <td>
           <ul class="option" style="list-style:none;">
           <li class="dropdown">
@@ -45,6 +45,9 @@
               <% end %>
 
               <li>
+                <%= link_to("置顶",move_to_top_admin_article_path(article),method: :post) %>
+              </li>
+              <li>
                 <%= link_to("删除",admin_article_path(article),method: :delete, data: {confirm: "确定要删除该文章？"}) %></td>
               </li>
             </ul>
@@ -53,4 +56,10 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="text-center">
+    <div class="pagination">
+      <%= will_paginate @articles, renderer: BootstrapPagination::Rails, :previous_label => t('上一页'), :next_label => t('下一页') %>
+    </div>
+  </div>
 </div>
