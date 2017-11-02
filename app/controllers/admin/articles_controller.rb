@@ -1,7 +1,8 @@
 class Admin::ArticlesController < ApplicationController
-
+  before_action :validate_search_key, only:[:find]
   before_action :authenticate_user!, except: [:index,:show]
   before_action :require_is_admin
+  layout "admin"
 
   #定义将文章设定为"公开"的方法
   def publish
@@ -75,6 +76,29 @@ class Admin::ArticlesController < ApplicationController
     redirect_to admin_articles_path
 
   end
+
+  #定义搜索后台文章的方法（可以搜索状态为私密，公开，草稿的文章）
+  def find
+    if @query_string.present?
+      search_result = Article.ransack(@search_criteria).result(:distinct => true)
+      @articles = search_result.paginate(:page => params[:page], :per_page => 10)
+    end
+  end
+
+
+  protected
+
+  def validate_search_key
+    @query_string = params[:s].gsub(/\\|\'|\/|\?/, "") if params[:s].present?
+    @search_criteria = search_criteria(@query_string)
+
+  end
+
+  def search_criteria(query_string)
+    {:title_or_description_cont => query_string}
+
+  end
+
 
   private
 

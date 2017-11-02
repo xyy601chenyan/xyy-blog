@@ -16,6 +16,9 @@ Rails.application.routes.draw do
         post :exclusive
         post :move_to_top
       end
+      collection do
+        get :find
+      end
     end
   end
 

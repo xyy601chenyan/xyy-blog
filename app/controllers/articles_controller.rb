@@ -15,11 +15,11 @@ class ArticlesController < ApplicationController
     end
    end
 
-
+  #定义搜索文章的方法(只能搜索到状态为"公开"的文章)
    def search
      if @query_string.present?
        search_result = Article.where(:status => "public").ransack(@search_criteria).result(:distinct => true)
-       @articles = search_result.paginate(:page => params[:page], :per_page => 6)
+       @articles = search_result.paginate(:page => params[:page], :per_page => 10)
      end
    end
 
