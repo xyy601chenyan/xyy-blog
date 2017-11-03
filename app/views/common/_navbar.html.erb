@@ -13,6 +13,21 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse" aria-expanded="false">
       <ul class="nav navbar-nav navbar-right">
         <li>
+          <%= link_to("所有文章",articles_path) %>
+        </li>
+        <li>
+          <%= link_to("ruby on rails",ror_page_articles_path) %>
+        </li>
+        <li>
+          <%= link_to("教程工具",tutorial_page_articles_path) %>
+        </li>
+        <li>
+          <%= link_to("知识体系",growth_page_articles_path) %>
+        </li>
+        <li>
+          <%= link_to("生活感受",life_page_articles_path) %>
+        </li>
+        <li>
           <%= render "articles/search_bar" %>
         </li>
         <% if !current_user %>

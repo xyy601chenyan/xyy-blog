@@ -32,8 +32,26 @@ class Admin::ArticlesController < ApplicationController
     redirect_to :back
   end
 
+  #定义在管理员后台找出所有kind为ror的文章
+  def ror_page1
+    @articles = Article.where(:kind => "ror").order("created_at DESC").paginate(:page => params[:page],:per_page=>10)
+  end
+
+  #定义在管理员后台找出所有kind为tutorial的文章
+  def tutorial_page1
+    @articles = Article.where(:kind => "tutorial").order("created_at DESC").paginate(:page => params[:page],:per_page=>10)
+  end
+
+  def growth_page1
+    @articles = Article.where(:kind => "growth").order("created_at DESC").paginate(:page => params[:page],:per_page=>10)
+  end
+
+  def life_page1
+    @articles = Article.where(:kind => "life").order("created_at DESC").paginate(:page => params[:page],:per_page=>10)
+  end
+
   def index
-    @articles = Article.order("position ASC").paginate(:page => params[:page],:per_page =>10)
+    @articles = Article.includes(:labels).order("position ASC").paginate(:page => params[:page],:per_page =>10)
   end
 
   def new
@@ -103,7 +121,7 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title,:description,:status)
+    params.require(:article).permit(:title,:description,:status,:kind,:label_ids => [])
   end
 
 end

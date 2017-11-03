@@ -9,9 +9,23 @@
        <span class="icon-bar"></span>
       </button>
     </div>
-
     <div class="collapse navbar-collapse navbar-ex1-collapse" aria-expanded="false">
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to("所有文章",admin_articles_path) %>
+        </li>
+        <li>
+          <%= link_to("ruby on rails",ror_page1_admin_articles_path) %>
+        </li>
+        <li>
+          <%= link_to("教程工具",tutorial_page1_admin_articles_path) %>
+        </li>
+        <li>
+          <%= link_to("知识体系",growth_page1_admin_articles_path) %>
+        </li>
+        <li>
+          <%= link_to("生活感受",life_page1_admin_articles_path) %>
+        </li>
         <li>
           <%= render "admin/articles/admin_search_bar" %>
         </li>

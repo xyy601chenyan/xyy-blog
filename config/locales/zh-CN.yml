@@ -4,3 +4,8 @@
       draft: 草稿
       public: 公开
       private: 私密
+    kind:
+      ror: ruby on rails
+      tutorial: 教程工具
+      growth: 知识体系
+      life: 生活感受

@@ -3,8 +3,16 @@ class Article < ApplicationRecord
   validates :title, presence: {message: "请填写文章标题"}
   validates :description, presence: {message: "请填写正文内容"}
 
+  #设定文章的状态
   STATUS = ["draft","public","private"]
   validates_inclusion_of :status, :in => STATUS
+
+  #设定文章的类别
+  KIND = ["ror","tutorial","growth","life"]
+  validates_inclusion_of :kind, :in => KIND
+
+  has_many :labelships
+  has_many :labels , :through => :labelships
 
   acts_as_list
 

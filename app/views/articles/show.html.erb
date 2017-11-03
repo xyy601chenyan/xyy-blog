@@ -3,4 +3,7 @@
   </div>
   <h2><%= @article.title %></h2>
   <p><%= markdown(@article.description)%></p>
+  <% @article.labels.each do |label| %>
+  <button class="btn btn-default btn-sm"> <%= label.try(:name)%> </button>
+  <% end %>
 </div>

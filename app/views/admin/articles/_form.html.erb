@@ -3,13 +3,31 @@
 <div class="form-article">
   <%= f.input :title, label: "标题"%>
   <%= f.input :description, label: "正文" %>
+  <%= f.label :"文章: "%>
+  <%# 为单选按钮添加bootstrap按钮样式 %>
+   <div class="btn-group" data-toggle="buttons">
   <% Article::STATUS.each do |status| %>
-  <label>
+  <label class="btn btn-default <%= (status == f.object.status)? 'active' : '' %>">
     <%= f.radio_button :status, status %>
     <%= t(status, :scope => "article.status") %>
 
   </label>
   <% end %>
+</div>
+  <br>
+  <%= f.label :"类别: " %>
+  <div class="btn-group" data-toggle="buttons">
+  <% Article::KIND.each do |kind| %>
+  <label class="btn btn-default <%= (kind == f.object.kind)? 'active' : '' %>">
+    <%= f.radio_button :kind,kind %>
+    <%= t(kind, :scope => "article.kind") %>
+  </label>
+  <% end %>
+</div>
+   <br>
+   <div class="form-label">
+     <%= f.association :labels, :as => :check_boxes, label: "标签:" %>
+   </div>
 </div>
 <br>
 <%= f.submit "确定", class: "btn btn-primary", data: {disable_with: "提交中..."} %>

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :articles do
     collection do
       get :search
+      get :ror_page
+      get :tutorial_page
+      get :growth_page
+      get :life_page
     end
   end
 
@@ -18,6 +22,10 @@ Rails.application.routes.draw do
       end
       collection do
         get :find
+        get :ror_page1
+        get :tutorial_page1
+        get :growth_page1
+        get :life_page1
       end
     end
   end

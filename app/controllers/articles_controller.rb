@@ -1,6 +1,30 @@
 class ArticlesController < ApplicationController
   before_action :validate_search_key, only:[:search]
 
+   #定义找出所有status为public(公开状态)并且kind为ror的文章
+   def ror_page
+     @articles = Article.where(:status => "public",:kind => "ror").order("created_at DESC")
+     @articles = @articles.paginate(:page => params[:page],:per_page => 10)
+   end
+
+   #定义找出所有status为public(公开状态)并且kind为tutorial的文章
+   def tutorial_page
+     @articles = Article.where(:status => "public",:kind => "tutorial").order("created_at DESC")
+     @articles = @articles.paginate(:page => params[:page],:per_page => 10)
+   end
+
+
+   def growth_page
+     @articles = Article.where(:status => "public",:kind => "growth").order("created_at DESC")
+     @articles = @articles.paginate(:page => params[:page],:per_page => 10)
+   end
+
+   def life_page
+     @articles = Article.where(:status => "public",:kind => "life").order("created_at DESC")
+     @articles = @articles.paginate(:page => params[:page],:per_page => 10)
+   end
+
+   #定义找出所有status为public(公开状态)的文章
    def index
      @articles = Article.where(:status => "public").order("created_at DESC")
      @articles = @articles.paginate(:page => params[:page], :per_page => 10)
