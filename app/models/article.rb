@@ -9,7 +9,7 @@ class Article < ApplicationRecord
 
   #设定文章的类别
   KIND = ["ror","tutorial","growth","life"]
-  validates_inclusion_of :kind, :in => KIND
+  validates_inclusion_of :kind, :in => KIND, :allow_nil => true
 
   has_many :labelships
   has_many :labels , :through => :labelships
