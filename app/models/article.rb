@@ -14,6 +14,9 @@ class Article < ApplicationRecord
   has_many :labelships
   has_many :labels , :through => :labelships
 
+  #建立和评论之间的关系
+  has_many :comments
+
   acts_as_list
 
 

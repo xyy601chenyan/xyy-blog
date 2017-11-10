@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :growth_page
       get :life_page
     end
+    resources :comments
   end
 
   namespace :admin do
