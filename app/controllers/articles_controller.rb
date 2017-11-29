@@ -37,8 +37,9 @@ class ArticlesController < ApplicationController
       flash[:warning] = "该篇文章已归档"
       redirect_to root_path
     end
-    @comments = @article.comments
     @comment = Comment.new
+    @comments = @article.comments.order("created_at DESC")
+
    end
 
   #定义搜索文章的方法(只能搜索到状态为"公开"的文章)

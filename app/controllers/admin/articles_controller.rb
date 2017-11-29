@@ -8,33 +8,37 @@ class Admin::ArticlesController < ApplicationController
   def publish
     @article = Article.find(params[:id])
     @article.publish!
-    redirect_to :back
+    #redirect_to :back
+    render "change_status"
   end
 
   #定义将文章设定为"草稿"的方法
   def sketch
     @article = Article.find(params[:id])
     @article.sketch!
-    redirect_to :back
+    #redirect_to :back
+    render "change_status"
   end
 
   #定义将文章设定为"私有"的方法
   def exclusive
     @article = Article.find(params[:id])
     @article.exclusive!
-    redirect_to :back
+    #redirect_to :back
+    render "change_status"
   end
 
   #定义将文章在后台置顶的方法
   def  move_to_top
     @article = Article.find(params[:id])
     @article.move_to_top
-    redirect_to :back
+    # redirect_to :back
   end
 
   #定义在管理员后台找出所有kind为ror的文章
   def ror_page1
     @articles = Article.where(:kind => "ror").order("created_at DESC").paginate(:page => params[:page],:per_page=>10)
+
   end
 
   #定义在管理员后台找出所有kind为tutorial的文章
@@ -51,7 +55,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.includes(:labels).order("position ASC").paginate(:page => params[:page],:per_page =>10)
+     @articles = Article.includes(:labels).order("position ASC").paginate(:page => params[:page],:per_page =>10)
   end
 
   def new
@@ -90,9 +94,6 @@ class Admin::ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    flash[:alert] = "已删除文章"
-    redirect_to admin_articles_path
-
   end
 
   #定义搜索后台文章的方法（可以搜索状态为私密，公开，草稿的文章）

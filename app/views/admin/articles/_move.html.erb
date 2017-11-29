@@ -1,0 +1,41 @@
+  <tr id="article-<%= article.id%>">
+<td>
+  <span id="article-status-show-<%= article.id %>"><%= render :partial => "icon",:locals => {:article => article} %></span> <%= link_to(article.title,edit_admin_article_path(article)) %>
+</td>
+<td><%= link_to("预览",admin_article_path(article),class: "btn btn-sm btn-default",target:"_blank") %> <%#= t(article.status, :scope => "article.status") %>
+</td>
+<td>
+  <% if article.kind ==nil %>
+  <%= t(article.kind,:scope =>" ") %>
+  <% else %>
+  <%= t(article.kind, :scope => "article.kind") %>
+  <% end %>
+</td>
+<td>
+  <% article.labels.each do |label| %>
+  <%= label.try(:name)  %>
+  <% end %>
+</td>
+<td>
+  <ul class="option" style="list-style:none;">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">选项
+      <b class="caret"></b>
+
+    </a>
+    <ul class="dropdown-menu">
+      <li id="article-status-<%= article.id %>">
+
+      <%= render :partial => "status", :locals => {:article => article} %>
+
+      </li>
+
+      <li>
+        <%= link_to("置顶",move_to_top_admin_article_path(article),method: :post,remote: true) %>
+      </li>
+      <li>
+        <%= link_to("删除",admin_article_path(article),method: :delete,remote: true,data: {confirm: "确定要删除该篇文章?"})  %></td>
+      </li>
+    </ul>
+    </ul>
+  </tr>

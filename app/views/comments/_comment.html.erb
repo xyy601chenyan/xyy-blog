@@ -1,0 +1,3 @@
+<%=simple_format(comment.content)%>
+<%= comment.user.email %>
+发布于<%= time_ago_in_words(comment.created_at)%>前

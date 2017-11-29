@@ -1,0 +1,13 @@
+<% case article.status %>
+<% when "draft" %>
+  <%= link_to("发布",publish_admin_article_path(article),method: :post,:remote => true) %>
+ <%= link_to("设为私有",exclusive_admin_article_path(article),method: :post,:remote => true) %>
+
+<% when "public"%>
+  <%= link_to("设为草稿",sketch_admin_article_path(article),method: :post,:remote => true) %>
+  <%= link_to("设为私有",exclusive_admin_article_path(article),method: :post,:remote => true) %>
+
+<% when "private" %>
+  <%= link_to("设为草稿",sketch_admin_article_path(article),method: :post,:remote => true) %>
+  <%= link_to("发布",publish_admin_article_path(article),method: :post,:remote => true) %>
+<% end %>

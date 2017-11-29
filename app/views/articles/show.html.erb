@@ -8,25 +8,19 @@
   <% end %>
 
   <div class="comment-create">
-  <%= simple_form_for [@article,@comment] do |f|%>
-  <%= f.input :content ,label:"评论", placeholder: "写下你的评论"%>
+  <%= simple_form_for [@article,@comment],:remote => true do |f|%>
+  <%= f.input :content ,label:"评论", placeholder: "写下你的评论",hint: "(留言内容不能为空)"%>
   <%= f.submit "提交",disable_with: "提交中...", class: "btn btn-primary"%>
   <% end %>
     </div>
 
   <div class="users-comments " >
-    <% if @comments.empty? %>
-    <h3>0 条评论</h3>
-    <% else %>
-    <h3><%= @comments.count %>条评论</h3>
-    <% @comments.each do |comment| %>
-    <div class="comment"  style="display:block;">
-    <%=simple_format(comment.content)%>
-    <%= comment.user.email %>
-    发布于<%= time_ago_in_words(comment.created_at)%>前
-    <% end %>
-    </div>
-    <% end %>
+      <h3 id="comment-count"><%= @comments.count %>条评论</h3>
+      <div id="comment-list">
+      <% @comments.each do |comment| %>
+      <%= render :partial => 'comments/comment', :locals => {:comment => comment} %>
+      <% end %>
+      </div>
     </div>
 
     <p>

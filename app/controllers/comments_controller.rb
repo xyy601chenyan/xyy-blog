@@ -7,18 +7,19 @@ class CommentsController < ApplicationController
     @comment.article = @article
     @comment.user = current_user
 
-    if @comment.save
-      redirect_to article_path(@article)
-    else
-      redirect_to article_path(@article)
-      flash[:alert] = '留言内容不能为空'
-    end
+    @comment.save
+    #if @comment.save
+       #redirect_to article_path(@article)
+    #else
+      #redirect_to article_path(@article)
+      #flash[:alert] = '留言内容不能为空'
+    #end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id,:article_id,:content)
+    params.require(:comment).permit(:content)
 
   end
 end

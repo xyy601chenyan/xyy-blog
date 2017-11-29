@@ -1,0 +1,5 @@
+str = "<%= j render :partial => "status",:locals => {:article => @article} %>";
+$("#article-status-<%= @article.id %>").html(str);
+
+str1= "<%= j render :partial => "icon",:locals => {:article => @article}%>";
+$("#article-status-show-<%= @article.id %>").html(str1);

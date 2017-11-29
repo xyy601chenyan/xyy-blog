@@ -1,0 +1,2 @@
+$("#article-<%= @article.id%>").remove();
+$("#article-list").prepend("<%=j render :partial => 'move', :locals => { :article=> @article } %>");
