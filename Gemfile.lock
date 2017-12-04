@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.org/
   specs:
     actioncable (5.0.6)
       actionpack (= 5.0.6)
@@ -52,6 +52,8 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    by_star (2.2.1)
+      activesupport
     byebug (9.1.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -232,6 +234,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   bootstrap-sass
+  by_star
   byebug
   coffee-rails (~> 4.2)
   devise

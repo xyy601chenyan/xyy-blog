@@ -20,6 +20,7 @@ class Article < ApplicationRecord
   acts_as_list
 
 
+
 #定义方法，将文章的类型修改为"public"(公开)
   def publish!
     self.status = "public"

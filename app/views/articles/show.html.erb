@@ -1,11 +1,29 @@
 <div class="col-md-12">
   <div class="article">
-  </div>
+
   <h2><%= @article.title %></h2>
   <p><%= markdown(@article.description)%></p>
   <% @article.labels.each do |label| %>
   <div class="btn btn-default btn-sm"> <%= label.try(:name)%> </div>
   <% end %>
+  </div>
+  <div>
+    <p>
+      <!-- <% if @article.previous(scope: ->{where(status: "public")}).present?%> -->
+      <!-- <%#= link_to("上一篇:"+@article.previous(scope: ->{where(status: "public")}).title,article_path(@article.previous(scope: ->{where(status: "public")}))) %> -->
+      <!-- <% end %> -->
+      <!-- <% if @article.next(scope: ->{where(status: "public")}).present? %> -->
+      <!-- <%#= link_to("下一篇:"+@article.next(scope: ->{where(status: "public")}).title,article_path(@article.next(scope: ->{where(status: "public")}))) %> -->
+      <!-- <% end %> -->
+
+      <% if @previous.present?%>
+      <%= link_to("上一篇:"+@previous.title,article_path(@previous)) %>
+      <% end %>
+      <% if @next.present? %>
+      <%= link_to("下一篇:"+@next.title,article_path(@next)) %>
+      <% end %>
+    </p>
+  </div>
 
   <div class="comment-create">
   <%= simple_form_for [@article,@comment],:remote => true do |f|%>

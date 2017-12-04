@@ -55,8 +55,13 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def index
-     @articles = Article.includes(:labels).order("position ASC").paginate(:page => params[:page],:per_page =>10)
+     @articles = case params[:order]
+   when 'by_created_at'
+     Article.includes(:labels).order("created_at DESC").paginate(:page => params[:page],:per_page =>10)
+   else
+     Article.includes(:labels).order("position ASC").paginate(:page => params[:page],:per_page =>10)
   end
+end
 
   def new
     @article = Article.new

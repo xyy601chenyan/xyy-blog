@@ -34,11 +34,14 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.status != "public"
-      flash[:warning] = "该篇文章已归档"
+      flash[:warning] = "您没有权限查看该篇文章"
       redirect_to root_path
     end
     @comment = Comment.new
     @comments = @article.comments.order("created_at DESC")
+
+    @next = @article.previous(scope: ->{where(status: "public")})
+    @previous = @article.next(scope: ->{where(status: "public")})
 
    end
 
