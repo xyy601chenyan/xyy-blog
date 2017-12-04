@@ -20,9 +20,11 @@
   </ul>
 </div>
 
+<%= form_tag bulk_update_admin_articles_path, :class => "form-inline" do %>
   <table class="table">
     <thead>
       <tr>
+        <td><%= check_box_tag "全选", "1", false, :id => "toggle_all" %></td>
         <td>标题</td>
         <td>状态</td>
         <td>类别</td>
@@ -36,6 +38,10 @@
       <% end %>
     </tbody>
   </table>
+  <p>
+    <%= submit_tag "批次删除", :class => "btn btn-danger ", :data => {confirm: "确定要删除?"} %>
+  </p>
+  <% end %>
 
   <div class="text-center">
     <div class="pagination">
@@ -43,3 +49,18 @@
     </div>
   </div>
 </div>
+
+<script>
+// 这个javascript会绑定事件在 #toggle_all核选方块上，来实作全选效果
+$("#toggle_all").click(function(){
+  if ($(this).prop("checked")){
+    $("input[name= 'ids[]']").prop("checked",true);
+  }
+  else{
+    $("input[name= 'ids[]']").prop("checked",false);
+  }
+})
+
+
+
+</script>

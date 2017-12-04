@@ -4,6 +4,20 @@ class Admin::ArticlesController < ApplicationController
   before_action :require_is_admin
   layout "admin"
 
+  #定义批量删除的方法
+  def bulk_update
+    total = 0
+    Array(params[:ids]).each do |article_id|
+      article = Article.find(article_id)
+      article.destroy
+      total += 1
+    end
+
+    flash[:alert] = "已删除 #{total}笔资料"
+    redirect_to admin_articles_path
+
+  end
+
   #定义将文章设定为"公开"的方法
   def publish
     @article = Article.find(params[:id])

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         get :tutorial_page1
         get :growth_page1
         get :life_page1
+        post :bulk_update
       end
     end
   end

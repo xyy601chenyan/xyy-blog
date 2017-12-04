@@ -1,5 +1,9 @@
   <tr id="article-<%= article.id%>">
 <td>
+  <%= check_box_tag "ids[]",article.id %>
+</td>
+
+<td>
   <span id="article-status-show-<%= article.id %>"><%= render :partial => "icon",:locals => {:article => article} %></span> <%= link_to(article.title,edit_admin_article_path(article)) %>
 </td>
 <td><%= link_to("预览",admin_article_path(article),class: "btn btn-sm btn-default",target:"_blank") %> <%#= t(article.status, :scope => "article.status") %>
