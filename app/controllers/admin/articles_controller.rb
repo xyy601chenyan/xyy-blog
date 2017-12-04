@@ -4,17 +4,28 @@ class Admin::ArticlesController < ApplicationController
   before_action :require_is_admin
   layout "admin"
 
-  #定义批量删除的方法
+  #定义批量编辑和批量删除的方法
   def bulk_update
     total = 0
     Array(params[:ids]).each do |article_id|
       article = Article.find(article_id)
-      article.destroy
-      total += 1
+
+      if params[:commit] == I18n.t(:bulk_update)
+        article.status = params[:article_status]
+        article.kind = params[:article_kind]
+        if article.save
+          total += 1
+          flash[:notice] = "已修改#{total}笔资料"
+        end
+      elsif params[:commit] == I18n.t(:bulk_delete)
+        article.destroy
+        total += 1
+        flash[:alert] = "已删除#{total}笔资料"
+      end
     end
 
-    flash[:alert] = "已删除 #{total}笔资料"
-    redirect_to admin_articles_path
+
+    redirect_to :back
 
   end
 

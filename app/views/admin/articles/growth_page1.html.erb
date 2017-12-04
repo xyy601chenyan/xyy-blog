@@ -24,7 +24,10 @@
     </tbody>
   </table>
   <p>
-    <%= submit_tag "批次删除", :class => "btn btn-danger", :data => {confirm: "确定要删除?"} %>
+    <%= select_tag :article_status, options_for_select(Article::STATUS.map{|s|[t(s,:scope => "article.status"),s]}), :class => "form-control"  %>
+    <%= select_tag :article_kind, options_for_select(Article::KIND.map{|k|[t(k,:scope => "article.kind"),k]}), :class => "form-control"%>
+    <%= submit_tag t(:bulk_update), :class => "btn btn-primary" %>
+    <%= submit_tag t(:bulk_delete), :class => "btn btn-danger", :data => {confirm: "确定删除?"} %>
   </p>
   <% end %>
 
