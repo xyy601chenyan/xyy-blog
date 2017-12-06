@@ -1,12 +1,27 @@
   <div class="search-bar">
-    <%= form_tag search_articles_path, method: :get, class: "articles-search-form" do %>
+    <%= form_tag search_articles_path, method: :get,class: "articles-search-form" do %>
     <div class="input-group">
-      <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="搜索文章">
+      <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="搜索文章" id="search_input">
       <span class="input-group-btn">
         <button type="submit" class="btn btn-default">
           <span class="glyphicon glyphicon-search"></span>
+
         </button>
+
       </span>
     </div>
+  <a id="empty_button" class="btn btn-default">清空</a>
     <% end %>
   </div>
+
+  <!-- <script >
+  $("#search_input").val("");
+
+  </script> -->
+
+ <script >
+ $("#empty_button").click(function(){
+    $("#search_input").val("");
+ })
+
+ </script>
