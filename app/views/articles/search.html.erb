@@ -2,10 +2,10 @@
   <% if @articles.blank? %>
   <br>
   <h3 class="text-center">
-    Opps! No articles matched yet, please try again.
+    未找到匹配的文章，请调整关键词
   </h3>
   <% else %>
-  <h3 class="text-center" > Total find <%= @articles.count %>文章</h3>
+  <h3 class="text-center" > 共找到 <%= @articles.count %>篇文章</h3>
   <hr>
 
   <table class="table ">

@@ -2,11 +2,11 @@
   <% if @articles.blank? %>
   <br>
   <h3 class="text-center">
-    Opps! No articles matched yet, please try again.
+    未找到匹配的文章，请调整关键词
   </h3>
   <% else %>
-  <h3 class="text-center" > Total find <%= @articles.count %>文章</h3>
-  <hr>
+  <h3 class="text-center" > 共找到 <%= @articles.count %>篇文章</h3>
+  <br>
   <%= form_tag bulk_update_admin_articles_path, :class => "form-inline" do %>
   <p>
     <%= select_tag :article_status, options_for_select(Article::STATUS.map{|s|[t(s,:scope => "article.status"),s]}),:prompt => "请选择状态",:class => "form-control"  %>
@@ -17,6 +17,7 @@
   <table class="table">
     <thead>
       <tr>
+        <td><%= check_box_tag "全选","1",false, :id => "toggle_all" %></td>
         <td>标题</td>
         <td>状态</td>
         <td>操作</td>
@@ -29,7 +30,7 @@
     </tbody>
   </table>
   <% end %>
-  
+
   <div class="text-center">
     <div class="pagination">
     <%= will_paginate @articles, renderer: BootstrapPagination::Rails,:previous_label => t('上一页'), :next_label => t('下一页') %>
