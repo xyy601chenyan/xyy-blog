@@ -16,8 +16,12 @@
       <% @articles.each do |article| %>
       <tr>
         <td><%= link_to(article.title,article_path(article)) %></td>
+        <% if article.description.length >= 80 %>
         <td><%= markdown(article.description.first(80)+"...") %></td>
-        
+        <% else %>
+        <td><%= markdown(article.description) %></td>
+        <% end  %>
+
         <td><%= article.created_at.strftime("%Y/%m/%d") %></td>
       </tr>
       <% end %>
